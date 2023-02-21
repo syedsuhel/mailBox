@@ -1,12 +1,27 @@
+import { IconComponentProvider } from '@react-native-material/core';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { DraftsStack } from './routes/DraftsStack';
+import { InboxStack } from './routes/InboxStack';
+import Inbox from './screens/Inbox';
+
+const Drawer= createDrawerNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <IconComponentProvider>
       <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        {/* <InboxStack/> */}
+        <Drawer.Navigator screenOptions={{headerShown:false}}>
+          <Drawer.Screen name='Inbox' component={InboxStack}/>
+          <Drawer.Screen name='Drafts' component={DraftsStack}/>
+        </Drawer.Navigator>
+
+      </NavigationContainer>
+    </IconComponentProvider>
   );
 }
 
